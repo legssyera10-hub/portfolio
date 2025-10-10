@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --container: 1200px;
+}
+
+/* Smooth theme transitions */
+.theme-transition {
+  transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease;
+}
+
+/* Focus rings */
+:is(button, a, input, select, textarea):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(59 130 246 / 50%);
+}
+
+/* Modern app background (light and dark) */
+body {
+  background-image: radial-gradient(1200px 600px at 20% 0%, rgba(59,130,246,.07), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(139,92,246,.08), transparent 60%),
+    linear-gradient(180deg, #f7f9fc 0%, #eef2f7 100%);
+}
+.dark body {
+  background-image: radial-gradient(1200px 600px at 20% 0%, rgba(59,130,246,.12), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(139,92,246,.14), transparent 60%),
+    linear-gradient(180deg, #0f172a 0%, #0e1626 100%);
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-slate-600/40 bg-slate-100/60 dark:bg-slate-800/50 dark:border-slate-600/40 shadow-lg shadow-black/5 dark:shadow-black/20 backdrop-blur-sm;
+  }
+}
+
+/* Hero AI background (simple circuit feel) */
+.hero-ai {
+  background-image:
+    radial-gradient(1200px 600px at 50% -20%, rgba(59,130,246,.10), transparent 70%),
+    url('/bg/ai-circuit-light.svg');
+  background-size: cover, 1200px 600px;
+  background-position: center, top center;
+}
+.dark .hero-ai {
+  background-image:
+    radial-gradient(1200px 600px at 50% -20%, rgba(59,130,246,.18), transparent 70%),
+    url('/bg/ai-circuit-dark.svg');
+  background-size: cover, 1200px 600px;
+  background-position: center, top center;
+}

@@ -1,0 +1,13 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Développeur Full Stack passionné par l'innovation",
+    "cta": "Voir mes projets"
+  }
+}
+
