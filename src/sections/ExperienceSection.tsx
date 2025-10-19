@@ -9,7 +9,15 @@ function Badge({ children }: { children: React.ReactNode }) {
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="mx-auto max-w-[var(--container)] px-4 py-20">
+    <section id="experience" className="relative overflow-hidden mx-auto max-w-[var(--container)] px-4 py-20">
+      {/* Themed background */}
+      <div aria-hidden className="absolute inset-0 -z-10">
+        {/* Subtle circuit pattern to match theme */}
+        <div className="absolute inset-0 opacity-20 dark:opacity-25 bg-[url('/bg/ai-circuit-dark.svg')] dark:bg-[url('/bg/ai-circuit-dark.svg')] bg-center bg-cover" />
+        {/* Soft radial gradients for depth */}
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-96 w-[120%] rounded-full blur-3xl bg-gradient-to-r from-primary/20 via-transparent to-accent/20" />
+        <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 h-96 w-[120%] rounded-full blur-3xl bg-gradient-to-r from-accent/20 via-transparent to-primary/20" />
+      </div>
       <div className="text-center mb-12">
         <WordReveal text="Expérience Professionnelle" className="text-3xl md:text-5xl font-extrabold" />
         <Reveal delay={0.1}><p className="mt-3 text-slate-400">Mon parcours professionnel</p></Reveal>
@@ -31,13 +39,17 @@ export default function ExperienceSection() {
 
                 {/* spacer for alternating on small screens just stack */}
                 {isLeft ? (
-                  <Reveal><ExperienceCard exp={exp} align="left" /></Reveal>
+                  <div className="hidden md:block">
+                    <Reveal><ExperienceCard exp={exp} align="left" /></Reveal>
+                  </div>
                 ) : (
                   <div className="hidden md:block" />
                 )}
 
                 {!isLeft ? (
-                  <Reveal><ExperienceCard exp={exp} align="right" /></Reveal>
+                  <div className="hidden md:block">
+                    <Reveal><ExperienceCard exp={exp} align="right" /></Reveal>
+                  </div>
                 ) : (
                   <div className="hidden md:block" />
                 )}

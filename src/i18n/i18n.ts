@@ -17,5 +17,13 @@ i18n
     interpolation: { escapeValue: false },
   })
 
-export default i18n
+// Reflect current language in <html lang="...">
+if (typeof document !== 'undefined') {
+  const lng = i18n.language || stored || 'fr'
+  document.documentElement.setAttribute('lang', lng)
+  i18n.on('languageChanged', (l) => {
+    try { document.documentElement.setAttribute('lang', l) } catch {}
+  })
+}
 
+export default i18n

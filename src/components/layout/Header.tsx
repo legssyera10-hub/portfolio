@@ -2,16 +2,18 @@ import { Link, NavLink } from 'react-router-dom'
 import ThemeToggle from '../ui/ThemeToggle'
 import LanguageToggle from '../ui/LanguageToggle'
 import { profile, initialsFromName } from '../../data/profile'
+import { useTranslation } from 'react-i18next'
 
 export default function Header() {
+  const { t } = useTranslation()
   const nav = [
-    { to: '/', label: 'Accueil' },
-    { to: '/#about', label: 'À propos' },
-    { to: '/#skills', label: 'Compétences' },
-    { to: '/#projects', label: 'Projets' },
-    { to: '/#experience', label: 'Expérience' },
-    { to: '/#education', label: 'Éducation' },
-    { to: '/#contact', label: 'Contact' },
+    { to: '/', key: 'home' },
+    { to: '/#about', key: 'about' },
+    { to: '/#skills', key: 'skills' },
+    { to: '/#projects', key: 'projects' },
+    { to: '/#experience', key: 'experience' },
+    { to: '/#education', key: 'education' },
+    { to: '/#contact', key: 'contact' },
   ]
 
   return (
@@ -31,7 +33,7 @@ export default function Header() {
               className={({ isActive }) => `text-sm transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-slate-600 dark:text-slate-300'}`}
               reloadDocument={n.to.includes('#')}
             >
-              {n.label}
+              {t(`nav.${n.key}`)}
             </NavLink>
           ))}
         </nav>
@@ -43,3 +45,4 @@ export default function Header() {
     </header>
   )
 }
+

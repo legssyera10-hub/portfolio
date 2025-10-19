@@ -6,6 +6,16 @@ export default function LanguageToggle() {
 
   useEffect(() => {
     setLang((i18n.language as 'fr' | 'en') || 'fr')
+    const handler = (lng: string) => {
+      setLang((lng as 'fr' | 'en') || 'fr')
+      try {
+        document.documentElement.setAttribute('lang', lng)
+      } catch {}
+    }
+    i18n.on('languageChanged', handler)
+    return () => {
+      i18n.off('languageChanged', handler)
+    }
   }, [])
 
   const toggle = () => {
@@ -13,6 +23,9 @@ export default function LanguageToggle() {
     setLang(next)
     i18n.changeLanguage(next)
     localStorage.setItem('lang', next)
+    try {
+      document.documentElement.setAttribute('lang', next)
+    } catch {}
   }
 
   return (
@@ -25,4 +38,3 @@ export default function LanguageToggle() {
     </button>
   )
 }
-

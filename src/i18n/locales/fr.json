@@ -3,6 +3,9 @@
     "home": "Accueil",
     "about": "À propos",
     "projects": "Projets",
+    "skills": "Compétences",
+    "experience": "Expérience",
+    "education": "Éducation",
     "contact": "Contact"
   },
   "hero": {
@@ -10,4 +13,3 @@
     "cta": "Voir mes projets"
   }
 }
-

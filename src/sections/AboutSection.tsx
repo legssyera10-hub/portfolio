@@ -24,13 +24,13 @@ export default function AboutSection() {
 
       <div className="grid gap-10 md:grid-cols-2 items-start">
         {/* Photo card (placeholder until provided) */}
-        <div className="relative mx-auto w-full max-w-md">
+        <div className="relative mx-auto w-full max-w-sm">
           <div className="card shadow-xl ring-0 overflow-hidden">
             {/* Show provided image if present later (public/profile.jpg). Fallback to gradient box. */}
             <img
               src={profile.photo}
               alt={profile.name}
-              className="w-full h-[360px] object-cover transition-transform duration-300"
+              className="w-full h-[300px] object-cover transition-transform duration-300"
               style={{ transform: `scale(${profile.photoScale ?? 1})` }}
               onError={(e) => {
                 (e.currentTarget as HTMLImageElement).style.display = 'none'
@@ -38,7 +38,7 @@ export default function AboutSection() {
                 if (fallback) fallback.style.display = 'block'
               }}
             />
-            <div style={{ display: 'none' }} className="w-full h-[360px] bg-gradient-to-br from-primary/20 to-accent/20" />
+            <div style={{ display: 'none' }} className="w-full h-[300px] bg-gradient-to-br from-primary/20 to-accent/20" />
           </div>
           {/* Decorative bubbles */}
           <span className="pointer-events-none absolute -top-4 -right-4 h-20 w-20 rounded-full bg-primary/30 blur-sm" />
@@ -72,12 +72,6 @@ export default function AboutSection() {
             </div>
           </div>
 
-          <div className="mt-8">
-            <Link to="/contact" className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-white hover:opacity-90">
-              Discutons ensemble
-              <span aria-hidden>⚡</span>
-            </Link>
-          </div>
         </Reveal>
       </div>
     </section>
