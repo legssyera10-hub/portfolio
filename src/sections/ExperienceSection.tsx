@@ -2,6 +2,7 @@ import { Calendar, MapPin } from 'lucide-react'
 import { experiences } from '../data/experience'
 import WordReveal from '../components/animations/WordReveal'
 import Reveal from '../components/animations/Reveal'
+import Typewriter from '../components/animations/Typewriter'
 
 function Badge({ children }: { children: React.ReactNode }) {
   return <span className="text-xs rounded-md bg-slate-800/60 border border-slate-700/60 px-2 py-1 text-slate-200">{children}</span>
@@ -12,19 +13,18 @@ export default function ExperienceSection() {
     <section id="experience" className="relative overflow-hidden mx-auto max-w-[var(--container)] px-4 py-20">
       {/* Themed background */}
       <div aria-hidden className="absolute inset-0 -z-10">
-        {/* Subtle circuit pattern to match theme */}
         <div className="absolute inset-0 opacity-20 dark:opacity-25 bg-[url('/bg/ai-circuit-dark.svg')] dark:bg-[url('/bg/ai-circuit-dark.svg')] bg-center bg-cover" />
-        {/* Soft radial gradients for depth */}
         <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-96 w-[120%] rounded-full blur-3xl bg-gradient-to-r from-primary/20 via-transparent to-accent/20" />
         <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 h-96 w-[120%] rounded-full blur-3xl bg-gradient-to-r from-accent/20 via-transparent to-primary/20" />
       </div>
       <div className="text-center mb-12">
         <WordReveal text="Expérience Professionnelle" className="text-3xl md:text-5xl font-extrabold" />
-        <Reveal delay={0.1}><p className="mt-3 text-slate-400">Mon parcours professionnel</p></Reveal>
+        <div className="mt-3 text-slate-400">
+          <Typewriter as="p" text="Mon parcours professionnel" speed={28} />
+        </div>
       </div>
 
       <div className="relative">
-        {/* center line */}
         <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 h-full w-px bg-gradient-to-b from-primary/60 via-primary/40 to-accent/60" />
 
         <ol className="space-y-14">
@@ -32,12 +32,10 @@ export default function ExperienceSection() {
             const isLeft = idx % 2 === 0
             return (
               <li key={idx} className="relative grid md:grid-cols-2 gap-6 items-start">
-                {/* connector dot */}
                 <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-6 h-4 w-4 rounded-full bg-slate-950">
                   <span className="absolute inset-0 m-auto h-4 w-4 rounded-full border-2 border-primary" />
                 </span>
 
-                {/* spacer for alternating on small screens just stack */}
                 {isLeft ? (
                   <div className="hidden md:block">
                     <Reveal><ExperienceCard exp={exp} align="left" /></Reveal>
@@ -54,7 +52,6 @@ export default function ExperienceSection() {
                   <div className="hidden md:block" />
                 )}
 
-                {/* mobile single column card duplication for layout */}
                 <div className="md:hidden col-span-2">
                   <ExperienceCard exp={exp} align="left" />
                 </div>
@@ -122,3 +119,4 @@ function ExperienceCard({ exp, align }: { exp: (typeof experiences)[number]; ali
     </div>
   )
 }
+

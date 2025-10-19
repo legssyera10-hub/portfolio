@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { skills, Skill, SkillCategory } from '../data/skills'
 import WordReveal from '../components/animations/WordReveal'
 import Reveal from '../components/animations/Reveal'
+import Typewriter from '../components/animations/Typewriter'
 
 const categories: (SkillCategory | 'Toutes')[] = [
   'Toutes',
@@ -32,7 +33,6 @@ function SkillCard({ s }: { s: Skill }) {
   return (
     <div className="card p-6 hover:border-primary/60 transition-colors">
       <div className="h-16 flex items-center justify-center">
-        {/* Icon placeholder: shows nothing if not provided. You can drop SVGs in /public/icons */}
         {s.icon ? (
           <img src={s.icon} alt={s.name} className="h-12 w-12 object-contain opacity-90" />
         ) : (
@@ -57,7 +57,9 @@ export default function SkillsSection() {
     <section id="skills" className="mx-auto max-w-[var(--container)] px-4 py-20">
       <div className="text-center mb-10">
         <WordReveal text="Mes Compétences" className="text-3xl md:text-5xl font-extrabold" />
-        <Reveal delay={0.1}><p className="mt-3 text-slate-400">Technologies et outils que je maîtrise</p></Reveal>
+        <div className="mt-3 text-slate-400">
+          <Typewriter as="p" text="Technologies et outils que je maîtrise" speed={28} />
+        </div>
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
@@ -76,4 +78,6 @@ export default function SkillsSection() {
         </div>
       </Reveal>
     </section>
-  )}
+  )
+}
+

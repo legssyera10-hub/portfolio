@@ -3,6 +3,8 @@ import toast, { Toaster } from 'react-hot-toast'
 import { profile } from '../data/profile'
 import { Github, Linkedin } from 'lucide-react'
 import emailjs from '@emailjs/browser'
+import Typewriter from '../components/animations/Typewriter'
+import FuturisticBackground from '../components/backgrounds/FuturisticBackground'
 
 type FormData = { name: string; email: string; subject: string; message: string }
 
@@ -53,11 +55,14 @@ export default function ContactSection() {
   }
 
   return (
-    <section id="contact" className="mx-auto max-w-[var(--container)] px-4 py-20">
+    <section id="contact" className="relative overflow-hidden mx-auto max-w-[var(--container)] px-4 py-20">
+      <FuturisticBackground />
       <Toaster />
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-5xl font-extrabold">Contactez-moi</h2>
-        <p className="mt-3 text-slate-400">Discutons de votre prochain projet</p>
+        <div className="mt-3 text-slate-400">
+          <Typewriter as="p" text="Discutons de votre prochain projet" speed={28} />
+        </div>
       </div>
 
       <div className="grid gap-8 md:grid-cols-2">
@@ -122,4 +127,3 @@ export default function ContactSection() {
     </section>
   )
 }
-

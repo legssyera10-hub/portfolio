@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { profile, initialsFromName } from '../data/profile'
 import WordReveal from '../components/animations/WordReveal'
+import Typewriter from '../components/animations/Typewriter'
 
 export default function Hero() {
   const { t } = useTranslation()
@@ -61,7 +62,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.35 }}
           className="mx-auto mt-8 max-w-4xl text-lg text-slate-700 dark:text-slate-300"
         >
-          {profile.bio}
+          <Typewriter text={profile.bio} speed={26} />
         </motion.p>
 
         <motion.div

@@ -3,6 +3,7 @@ import { projects } from '../data/projects'
 import ProjectCard from './ProjectCard'
 import WordReveal from '../components/animations/WordReveal'
 import Reveal from '../components/animations/Reveal'
+import Typewriter from '../components/animations/Typewriter'
 
 const cats: ('Tous les projets' | 'IA' | 'Développement Web' | 'Data Science')[] = [
   'Tous les projets',
@@ -34,17 +35,19 @@ export default function ProjectsSection() {
     <section id="projects" className="mx-auto max-w-[var(--container)] px-4 py-20">
       <div className="text-center mb-10">
         <WordReveal text="Mes Projets" className="text-3xl md:text-5xl font-extrabold" />
-        <Reveal delay={0.1}><p className="mt-3 text-slate-400">Découvrez mes réalisations techniques</p></Reveal>
+        <div className="mt-3 text-slate-400">
+          <Typewriter as="p" text="Découvrez mes réalisations techniques" speed={28} />
+        </div>
       </div>
 
       <Reveal>
-      <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
-        {cats.map((c) => (
-          <Chip key={c} active={filter === c} onClick={() => setFilter(c)}>
-            {c}
-          </Chip>
-        ))}
-      </div>
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
+          {cats.map((c) => (
+            <Chip key={c} active={filter === c} onClick={() => setFilter(c)}>
+              {c}
+            </Chip>
+          ))}
+        </div>
       </Reveal>
 
       <Reveal>
@@ -57,3 +60,4 @@ export default function ProjectsSection() {
     </section>
   )
 }
+

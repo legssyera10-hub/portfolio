@@ -11,6 +11,7 @@ type Props = {
 }
 
 import ProjectModal from '../components/ProjectModal'
+import Typewriter from '../components/animations/Typewriter'
 import { useState } from 'react'
 
 export default function ProjectCard({ title, description, tech, category, image, github, demo, longDescription, screenshots }: Props) {
@@ -28,7 +29,7 @@ export default function ProjectCard({ title, description, tech, category, image,
           <h3 className="text-lg font-semibold">{title}</h3>
           {category && <span className="text-xs rounded-md bg-primary/20 text-primary px-2 py-1 whitespace-nowrap">{category}</span>}
         </div>
-        <p className="mt-2 text-slate-600 dark:text-slate-300">{description}</p>
+        <Typewriter as="p" className="mt-2 text-slate-600 dark:text-slate-300" text={description} speed={22} />
       </div>
       <div className="px-5 mt-1 flex flex-wrap gap-2">
         {tech.map((t) => (

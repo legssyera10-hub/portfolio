@@ -1,15 +1,16 @@
 import { profile } from '../data/profile'
-import { Link } from 'react-router-dom'
 import WordReveal from '../components/animations/WordReveal'
 import Reveal from '../components/animations/Reveal'
+import Typewriter from '../components/animations/Typewriter'
+import CircuitRevealImage from '../components/animations/CircuitRevealImage'
 
 const expertise = [
-  'Intelligence Artificielle',
-  'Machine Learning & NLP',
-  'Systèmes BI & Analytics',
-  'Agents IA Autonomes',
-  'Solutions RPA',
-  'Développement Web',
+  'Intelligence Artificielle & Machine Learning',
+  'Traitement du Langage Naturel (NLP)',
+  'Big Data & Data Analytics',
+  'Développement Web (Python, FastAPI, JavaScript)',
+  'Optimisation de Performances Web (WordPress, Magento 2)',
+  'Chatbots & Systèmes de Recommandation IA',
 ]
 
 export default function AboutSection() {
@@ -17,28 +18,22 @@ export default function AboutSection() {
     <section id="about" className="mx-auto max-w-[var(--container)] px-4 py-20">
       <div className="text-center mb-12">
         <WordReveal text="À propos de moi" className="text-3xl md:text-5xl font-extrabold" />
-        <Reveal delay={0.1}>
-          <p className="mt-3 text-slate-400">Passionné par la technologie et l'innovation</p>
-        </Reveal>
+        <div className="mt-3 text-slate-400">
+          <Typewriter as="p" text="Passionné par la technologie et l'innovation" speed={28} />
+        </div>
       </div>
 
       <div className="grid gap-10 md:grid-cols-2 items-start">
-        {/* Photo card (placeholder until provided) */}
+        {/* Photo card */}
         <div className="relative mx-auto w-full max-w-sm">
           <div className="card shadow-xl ring-0 overflow-hidden">
-            {/* Show provided image if present later (public/profile.jpg). Fallback to gradient box. */}
-            <img
+            <CircuitRevealImage
               src={profile.photo}
               alt={profile.name}
-              className="w-full h-[300px] object-cover transition-transform duration-300"
-              style={{ transform: `scale(${profile.photoScale ?? 1})` }}
-              onError={(e) => {
-                (e.currentTarget as HTMLImageElement).style.display = 'none'
-                const fallback = (e.currentTarget.nextSibling as HTMLElement | null)
-                if (fallback) fallback.style.display = 'block'
-              }}
+              height={300}
+              imageScale={profile.photoScale ?? 1}
+              variant="blurFade"
             />
-            <div style={{ display: 'none' }} className="w-full h-[300px] bg-gradient-to-br from-primary/20 to-accent/20" />
           </div>
           {/* Decorative bubbles */}
           <span className="pointer-events-none absolute -top-4 -right-4 h-20 w-20 rounded-full bg-primary/30 blur-sm" />
@@ -63,11 +58,13 @@ export default function AboutSection() {
           <div className="mt-8">
             <h3 className="text-xl font-semibold">Domaines d'expertise</h3>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              {expertise.map((e) => (
-                <div key={e} className="flex items-center gap-2 rounded-xl border border-slate-700/60 bg-slate-900/40 px-4 py-3">
-                  <span className="h-2 w-2 rounded-full bg-primary inline-block" />
-                  <span className="text-slate-800 dark:text-slate-200">{e}</span>
-                </div>
+              {expertise.map((e, i) => (
+                <Reveal key={e} delay={i * 0.08}>
+                  <div className="flex items-center gap-2 rounded-xl border border-slate-700/60 bg-slate-900/40 px-4 py-3">
+                    <span className="h-2 w-2 rounded-full bg-primary inline-block" />
+                    <span className="text-slate-800 dark:text-slate-200">{e}</span>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </div>

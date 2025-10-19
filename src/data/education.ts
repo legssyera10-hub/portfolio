@@ -4,6 +4,7 @@ export type Education = {
   period: string
   location?: string
   bullets?: string[]
+  logo?: string
 }
 
 export const education: Education[] = [
@@ -16,6 +17,7 @@ export const education: Education[] = [
       'Université Internationale de Rabat (UIR)',
       'Big Data & Intelligence Artificielle, Informatique',
     ],
+    logo:'/logos/uir.png'
   },
   {
     title: 'Classes Préparatoires aux Grandes écoles',
@@ -26,6 +28,6 @@ export const education: Education[] = [
       "Réussite au CNC, admissible aux grandes écoles d'ingénieurs marocaines",
       "Acquisition d’une solide base en mathématiques, physique et informatique, avec développement de rigueur, méthode et capacité d’analyse.",
     ],
+    logo:'/logos/cpge.png'
   },
 ]
-
