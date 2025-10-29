@@ -10,7 +10,7 @@ export const profile = {
   // Contact info (à personnaliser)
   email: 'mohammed-anas.legssyer@uir.ac.ma',
   phone: '0682850803',
-  location: 'Oujda, Maroc',
+  location: 'Rabat, Maroc',
   availability: "Disponible pour un stage de fin d'études",
   social: {
     github: 'https://github.com',
