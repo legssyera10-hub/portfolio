@@ -14,8 +14,8 @@ export const education: Education[] = [
     period: '09/2023 – En cours',
     location: 'Maroc — Rabat',
     bullets: [
-      'Université Internationale de Rabat (UIR)',
-      'Big Data & Intelligence Artificielle, Informatique',
+      'Formation axée sur le Big Data, l’Intelligence Artificielle et l’informatique avancée',
+      'Développement de compétences solides en analyse de données, apprentissage automatique, programmation et gestion de projets technologiques',
     ],
     logo:'/logos/uir.png'
   },
@@ -26,7 +26,8 @@ export const education: Education[] = [
     location: 'Maroc — Oujda',
     bullets: [
       "Réussite au CNC, admissible aux grandes écoles d'ingénieurs marocaines",
-      "Acquisition d’une solide base en mathématiques, physique et informatique, avec développement de rigueur, méthode et capacité d’analyse.",
+      "Formation approfondie en mathématiques, physique et informatique, favorisant le développement d’une pensée logique, d’une rigueur méthodologique et d’une solide capacité d’analyse",
+      "Acquisition d’une base scientifique solide accompagnée d’un sens aigu de la méthode, de la précision et de la résolution de problèmes complexes",
     ],
     logo:'/logos/cpge.png'
   },
