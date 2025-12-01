@@ -6,7 +6,7 @@ export default function ThemeToggle() {
 
   useEffect(() => {
     const stored = localStorage.getItem('theme')
-    setDark(stored ? stored === 'dark' : document.documentElement.classList.contains('dark'))
+    setDark(stored ? stored === 'dark' : true)
   }, [])
 
   const toggle = () => {
@@ -18,7 +18,7 @@ export default function ThemeToggle() {
 
   return (
     <button
-      aria-label="Basculer le thème"
+      aria-label="Toggle theme"
       onClick={toggle}
       className="inline-flex items-center gap-2 rounded-md border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm hover:border-primary/60 hover:text-primary"
     >
@@ -27,4 +27,3 @@ export default function ThemeToggle() {
     </button>
   )
 }
-

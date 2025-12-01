@@ -1,18 +1,11 @@
 import { useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { skills, Skill, SkillCategory } from '../data/skills'
 import WordReveal from '../components/animations/WordReveal'
 import Reveal from '../components/animations/Reveal'
 import Typewriter from '../components/animations/Typewriter'
 
-const categories: (SkillCategory | 'Toutes')[] = [
-  'Toutes',
-  'Frontend',
-  'Backend',
-  'Bases de données',
-  'IA & Data Science',
-  'DevOps & Outils',
-  'Outils',
-]
+const filters: ('all' | SkillCategory)[] = ['all', 'frontend', 'backend', 'databases', 'ai', 'devops', 'tools']
 
 function Chip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
   return (
@@ -29,7 +22,7 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
   )
 }
 
-function SkillCard({ s }: { s: Skill }) {
+function SkillCard({ s, label }: { s: Skill; label: string }) {
   return (
     <div className="card p-6 hover:border-primary/60 transition-colors">
       <div className="h-16 flex items-center justify-center">
@@ -40,32 +33,35 @@ function SkillCard({ s }: { s: Skill }) {
         )}
       </div>
       <h4 className="mt-4 text-xl font-semibold text-slate-100 text-center">{s.name}</h4>
-      <p className="mt-1 text-sm text-slate-400 text-center">{s.category}</p>
+      <p className="mt-1 text-sm text-slate-400 text-center">{label}</p>
     </div>
   )
 }
 
 export default function SkillsSection() {
-  const [filter, setFilter] = useState<(typeof categories)[number]>('Toutes')
+  const { t } = useTranslation()
+  const [filter, setFilter] = useState<(typeof filters)[number]>('all')
 
   const filtered = useMemo(() => {
-    if (filter === 'Toutes') return skills
+    if (filter === 'all') return skills
     return skills.filter((s) => s.category === filter)
   }, [filter])
+
+  const labels = (category: SkillCategory | 'all') => t(`skills.filters.${category === 'all' ? 'all' : category}`)
 
   return (
     <section id="skills" className="mx-auto max-w-[var(--container)] px-4 py-20">
       <div className="text-center mb-10">
-        <WordReveal text="Mes Compétences" className="text-3xl md:text-5xl font-extrabold" />
+        <WordReveal text={t('skills.title')} className="text-3xl md:text-5xl font-extrabold" />
         <div className="mt-3 text-slate-400">
-          <Typewriter as="p" text="Technologies et outils que je maîtrise" speed={28} />
+          <Typewriter as="p" text={t('skills.subtitle')} speed={28} />
         </div>
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
-        {categories.map((c) => (
+        {filters.map((c) => (
           <Chip key={c} active={filter === c} onClick={() => setFilter(c)}>
-            {c}
+            {labels(c)}
           </Chip>
         ))}
       </div>
@@ -73,11 +69,10 @@ export default function SkillsSection() {
       <Reveal>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((s) => (
-            <SkillCard key={`${s.name}-${s.category}`} s={s} />
+            <SkillCard key={`${s.name}-${s.category}`} s={s} label={t(`skills.categoryLabels.${s.category}`)} />
           ))}
         </div>
       </Reveal>
     </section>
   )
 }
-

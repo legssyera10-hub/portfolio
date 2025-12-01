@@ -3,14 +3,18 @@ import WordReveal from '../components/animations/WordReveal'
 import Typewriter from '../components/animations/Typewriter'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Lang, pickLocalized, resolveLang } from '../utils/locale'
 
 export default function EducationSection() {
+  const { t, i18n } = useTranslation()
+  const lang = resolveLang(i18n.language)
   return (
     <section id="education" className="relative overflow-hidden mx-auto max-w-[var(--container)] px-4 py-20">
       <div className="text-center mb-12">
-        <WordReveal text="Éducation" className="text-3xl md:text-5xl font-extrabold" />
+        <WordReveal text={t('education.title')} className="text-3xl md:text-5xl font-extrabold" />
         <div className="mt-3 text-slate-400">
-          <Typewriter as="p" text="Parcours académique et apprentissages clés" speed={28} />
+          <Typewriter as="p" text={t('education.subtitle')} speed={28} />
         </div>
       </div>
 
@@ -31,7 +35,7 @@ export default function EducationSection() {
 
                 {left ? (
                   <div className="hidden md:block">
-                    <EduCard e={e} align="left" xFrom={xFrom} />
+                    <EduCard e={e} align="left" xFrom={xFrom} lang={lang} />
                   </div>
                 ) : (
                   <div className="hidden md:block" />
@@ -39,7 +43,7 @@ export default function EducationSection() {
 
                 {!left ? (
                   <div className="hidden md:block">
-                    <EduCard e={e} align="right" xFrom={xFrom} />
+                    <EduCard e={e} align="right" xFrom={xFrom} lang={lang} />
                   </div>
                 ) : (
                   <div className="hidden md:block" />
@@ -47,7 +51,7 @@ export default function EducationSection() {
 
                 {/* mobile single column */}
                 <div className="md:hidden col-span-2">
-                  <EduCard e={e} align="left" xFrom={-16} />
+                  <EduCard e={e} align="left" xFrom={-16} lang={lang} />
                 </div>
               </li>
             )
@@ -58,7 +62,7 @@ export default function EducationSection() {
   )
 }
 
-function EduCard({ e, align, xFrom }: { e: (typeof education)[number]; align: 'left' | 'right'; xFrom: number }) {
+function EduCard({ e, align, xFrom, lang }: { e: (typeof education)[number]; align: 'left' | 'right'; xFrom: number; lang: Lang }) {
   return (
     <motion.article
       initial={{ opacity: 0, x: xFrom, y: 8 }}
@@ -76,20 +80,20 @@ function EduCard({ e, align, xFrom }: { e: (typeof education)[number]; align: 'l
           <div className="flex items-center gap-3">
             <LogoSquare school={e.school} logo={e.logo} />
             <div>
-              <h3 className="text-xl font-semibold text-slate-100">{e.title}</h3>
+              <h3 className="text-xl font-semibold text-slate-100">{pickLocalized(e.title, lang)}</h3>
               <p className="text-primary font-medium">{e.school}</p>
             </div>
           </div>
           <div className="text-sm text-slate-400 text-right">
             <p>{e.period}</p>
-            {e.location && <p>{e.location}</p>}
+            {e.location && <p>{pickLocalized(e.location, lang)}</p>}
           </div>
         </div>
 
         {e.bullets && (
           <ul className="mt-4 list-disc ps-5 text-slate-300 space-y-1">
             {e.bullets.map((b, j) => (
-              <li key={j}>{b}</li>
+              <li key={j}>{pickLocalized(b, lang)}</li>
             ))}
           </ul>
         )}

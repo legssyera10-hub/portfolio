@@ -1,25 +1,23 @@
+import { useTranslation } from 'react-i18next'
 import { profile } from '../data/profile'
 import WordReveal from '../components/animations/WordReveal'
 import Reveal from '../components/animations/Reveal'
 import Typewriter from '../components/animations/Typewriter'
 import CircuitRevealImage from '../components/animations/CircuitRevealImage'
-
-const expertise = [
-  'Intelligence Artificielle & Machine Learning',
-  'Traitement du Langage Naturel (NLP)',
-  'Big Data & Data Analytics',
-  'Développement Web (Python, FastAPI, JavaScript)',
-  'Optimisation de Performances Web (WordPress, Magento 2)',
-  'Chatbots & Systèmes de Recommandation IA',
-]
+import { pickLocalized, resolveLang } from '../utils/locale'
 
 export default function AboutSection() {
+  const { t, i18n } = useTranslation()
+  const lang = resolveLang(i18n.language)
+  const paragraphs = (t('about.paragraphs', { returnObjects: true, name: profile.name, role: pickLocalized(profile.role, lang) }) as string[]) || []
+  const expertise = (t('about.expertise', { returnObjects: true }) as string[]) || []
+
   return (
     <section id="about" className="mx-auto max-w-[var(--container)] px-4 py-20">
       <div className="text-center mb-12">
-        <WordReveal text="À propos de moi" className="text-3xl md:text-5xl font-extrabold" />
+        <WordReveal text={t('about.title')} className="text-3xl md:text-5xl font-extrabold" />
         <div className="mt-3 text-slate-400">
-          <Typewriter as="p" text="Passionné par la technologie et l'innovation" speed={28} />
+          <Typewriter as="p" text={t('about.subtitle')} speed={28} />
         </div>
       </div>
 
@@ -42,21 +40,14 @@ export default function AboutSection() {
 
         {/* Text content */}
         <Reveal>
-          <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-            Je suis {profile.name}, {profile.role}. Je suis motivé et passionné par les défis technologiques, en particulier
-            ceux à l'intersection de la donnée et de l'intelligence artificielle.
-          </p>
-          <p className="mt-4 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-            Je recherche constamment à mettre en pratique mes compétences à travers des projets concrets et innovants,
-            en combinant analyse de données, apprentissage automatique et bonnes pratiques d’ingénierie.
-          </p>
-          <p className="mt-4 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-            Mon objectif est de contribuer activement à des projets qui repoussent les limites de la technologie tout en
-            apportant une réelle valeur ajoutée.
-          </p>
+          {paragraphs.map((p, idx) => (
+            <p key={idx} className={`text-lg leading-relaxed text-slate-700 dark:text-slate-300 ${idx > 0 ? 'mt-4' : ''}`}>
+              {p}
+            </p>
+          ))}
 
           <div className="mt-8">
-            <h3 className="text-xl font-semibold">Domaines d'expertise</h3>
+            <h3 className="text-xl font-semibold">{t('about.expertiseTitle')}</h3>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               {expertise.map((e, i) => (
                 <Reveal key={e} delay={i * 0.08}>

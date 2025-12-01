@@ -9,8 +9,8 @@ function ThemeBootstrap() {
   // Ensure theme is applied before paint
   useEffect(() => {
     const stored = localStorage.getItem('theme')
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const shouldDark = stored ? stored === 'dark' : prefersDark
+    const shouldDark = stored ? stored === 'dark' : true // default to dark when no preference stored
+    if (!stored) localStorage.setItem('theme', shouldDark ? 'dark' : 'light')
     document.documentElement.classList.toggle('dark', shouldDark)
   }, [])
   return null

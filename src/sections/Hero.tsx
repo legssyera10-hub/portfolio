@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom'
 import { profile, initialsFromName } from '../data/profile'
 import WordReveal from '../components/animations/WordReveal'
 import Typewriter from '../components/animations/Typewriter'
+import { cvUrl, openAndDownloadCv } from '../utils/cv'
+import { pickLocalized, resolveLang } from '../utils/locale'
 
 export default function Hero() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const lang = resolveLang(i18n.language)
   const initials = initialsFromName(profile.name)
 
   return (
@@ -18,7 +21,7 @@ export default function Hero() {
           transition={{ duration: 0.5 }}
           className="text-primary/90 font-medium"
         >
-          Salut, je suis
+          {t('hero.greeting')}
         </motion.p>
         <h1 className="mt-2 text-5xl md:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
           <WordReveal text={profile.name} />
@@ -29,7 +32,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="mt-4 text-2xl md:text-3xl font-semibold text-slate-800 dark:text-slate-200"
         >
-          {profile.role}
+          {pickLocalized(profile.role, lang)}
         </motion.h2>
 
         <motion.div
@@ -62,7 +65,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.35 }}
           className="mx-auto mt-8 max-w-4xl text-lg text-slate-700 dark:text-slate-300"
         >
-          <Typewriter text={profile.bio} speed={26} />
+          <Typewriter text={pickLocalized(profile.bio, lang)} speed={26} />
         </motion.p>
 
         <motion.div
@@ -74,8 +77,15 @@ export default function Hero() {
           <Link to="/projects" className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-white hover:opacity-90">
             {t('hero.cta')}
           </Link>
-          <a href="/LegssyerMohammedAnasCv2025.pdf" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-md border border-slate-300 dark:border-slate-700 px-5 py-3 hover:border-primary/60 hover:text-primary">
-            Télécharger CV
+          <a
+            href={cvUrl}
+            onClick={(e) => {
+              e.preventDefault()
+              openAndDownloadCv()
+            }}
+            className="inline-flex items-center gap-2 rounded-md border border-slate-300 dark:border-slate-700 px-5 py-3 hover:border-primary/60 hover:text-primary"
+          >
+            {t('hero.download')}
           </a>
         </motion.div>
       </div>

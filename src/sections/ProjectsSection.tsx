@@ -1,16 +1,13 @@
 import { useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { projects } from '../data/projects'
 import ProjectCard from './ProjectCard'
 import WordReveal from '../components/animations/WordReveal'
 import Reveal from '../components/animations/Reveal'
 import Typewriter from '../components/animations/Typewriter'
+import { resolveLang } from '../utils/locale'
 
-const cats: ('Tous les projets' | 'IA' | 'Développement Web' | 'Data Science')[] = [
-  'Tous les projets',
-  'IA',
-  'Développement Web',
-  'Data Science',
-]
+const cats: ('all' | 'ai' | 'web' | 'data')[] = ['all', 'ai', 'web', 'data']
 
 function Chip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
   return (
@@ -28,15 +25,20 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
 }
 
 export default function ProjectsSection() {
-  const [filter, setFilter] = useState<(typeof cats)[number]>('Tous les projets')
-  const filtered = useMemo(() => (filter === 'Tous les projets' ? projects : projects.filter(p => p.category === filter)), [filter])
+  const { t, i18n } = useTranslation()
+  const lang = resolveLang(i18n.language)
+  const [filter, setFilter] = useState<(typeof cats)[number]>('all')
+  const filtered = useMemo(
+    () => (filter === 'all' ? projects : projects.filter((p) => p.category === filter)),
+    [filter]
+  )
 
   return (
     <section id="projects" className="mx-auto max-w-[var(--container)] px-4 py-20">
       <div className="text-center mb-10">
-        <WordReveal text="Mes Projets" className="text-3xl md:text-5xl font-extrabold" />
+        <WordReveal text={t('projects.title')} className="text-3xl md:text-5xl font-extrabold" />
         <div className="mt-3 text-slate-400">
-          <Typewriter as="p" text="Découvrez mes réalisations techniques" speed={28} />
+          <Typewriter as="p" text={t('projects.subtitle')} speed={28} />
         </div>
       </div>
 
@@ -44,7 +46,7 @@ export default function ProjectsSection() {
         <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
           {cats.map((c) => (
             <Chip key={c} active={filter === c} onClick={() => setFilter(c)}>
-              {c}
+              {t(`projects.filters.${c === 'all' ? 'all' : c}`)}
             </Chip>
           ))}
         </div>
@@ -53,11 +55,10 @@ export default function ProjectsSection() {
       <Reveal>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((p) => (
-            <ProjectCard key={p.title} {...p} />
+            <ProjectCard key={p.title.fr} project={p} lang={lang} />
           ))}
         </div>
       </Reveal>
     </section>
   )
 }
-

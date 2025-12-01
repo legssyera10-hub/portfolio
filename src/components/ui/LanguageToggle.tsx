@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import i18n from '../../i18n/i18n'
 
 export default function LanguageToggle() {
+  const { t } = useTranslation()
   const [lang, setLang] = useState<'fr' | 'en'>('fr')
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export default function LanguageToggle() {
 
   return (
     <button
-      aria-label="Changer la langue"
+      aria-label={t('language.toggleLabel')}
       onClick={toggle}
       className="inline-flex items-center gap-2 rounded-md border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-sm hover:border-primary/60 hover:text-primary"
     >

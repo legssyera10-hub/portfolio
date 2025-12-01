@@ -1,15 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
-
-type ProjectLike = {
-  title: string
-  description: string
-  tech: string[]
-  image?: string
-  github?: string
-  demo?: string
-  longDescription?: string
-  screenshots?: string[]
-}
+import { useTranslation } from 'react-i18next'
+import { Project } from '../data/projects'
+import { Lang, pickLocalized } from '../utils/locale'
 
 const iconMap: Record<string, string> = {
   python: '/icons/python.svg',
@@ -40,7 +32,8 @@ function techIcon(name: string) {
   return iconMap[key]
 }
 
-export default function ProjectModal({ project, open, onClose }: { project: ProjectLike; open: boolean; onClose: () => void }) {
+export default function ProjectModal({ project, open, onClose, lang }: { project: Project; open: boolean; onClose: () => void; lang: Lang }) {
+  const { t } = useTranslation()
   const images = useMemo(() => {
     const list = project.screenshots && project.screenshots.length > 0 ? project.screenshots : (project.image ? [project.image] : [])
     return list
@@ -62,25 +55,30 @@ export default function ProjectModal({ project, open, onClose }: { project: Proj
 
   if (!open) return null
 
+  const title = pickLocalized(project.title, lang)
+  const description = pickLocalized(project.longDescription || project.description, lang)
+  const codeLabel = t('projects.buttons.code')
+  const demoLabel = t('projects.buttons.demo')
+
   return (
     <div className="fixed inset-0 z-50">
       <div className="absolute inset-0 bg-black/60" onClick={onClose} />
       <div className="absolute inset-0 flex items-start justify-center overflow-auto p-2 md:p-6" onClick={onClose}>
         <div className="w-full max-w-6xl rounded-xl bg-slate-900 text-slate-100 shadow-2xl" onClick={(e) => e.stopPropagation()}>
           <div className="flex items-center justify-between border-b border-slate-700 px-6 py-4">
-            <h2 className="text-2xl font-bold">{project.title}</h2>
-            <button aria-label="Fermer" className="rounded-md px-2 py-1 hover:bg-slate-800" onClick={onClose}>
-              ✕
+            <h2 className="text-2xl font-bold">{title}</h2>
+            <button aria-label={t('projectModal.close')} className="rounded-md px-2 py-1 hover:bg-slate-800" onClick={onClose}>
+              x
             </button>
           </div>
           {images.length > 0 && (
             <div className="px-6 pt-5">
               <div className="relative overflow-hidden rounded-lg bg-slate-800">
-                <img src={images[idx]} alt="Aperçu du projet" className="w-full max-h-[520px] object-cover" onError={(e)=>{(e.currentTarget as HTMLImageElement).style.display='none'}} />
+                <img src={images[idx]} alt={title} className="w-full max-h-[520px] object-cover" onError={(e)=>{(e.currentTarget as HTMLImageElement).style.display='none'}} />
                 {images.length > 1 && (
                   <>
-                    <button aria-label="Précédent" className="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center" onClick={() => setIdx((i)=> (i-1+images.length)%images.length)}>‹</button>
-                    <button aria-label="Suivant" className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center" onClick={() => setIdx((i)=> (i+1)%images.length)}>›</button>
+                    <button aria-label={t('projectModal.prev')} className="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center" onClick={() => setIdx((i)=> (i-1+images.length)%images.length)}>{'<'}</button>
+                    <button aria-label={t('projectModal.next')} className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center" onClick={() => setIdx((i)=> (i+1)%images.length)}>{'>'}</button>
                   </>
                 )}
               </div>
@@ -97,21 +95,21 @@ export default function ProjectModal({ project, open, onClose }: { project: Proj
           )}
 
           <div className="px-6 py-5">
-            <h3 className="text-xl font-semibold mb-2">Description</h3>
+            <h3 className="text-xl font-semibold mb-2">{t('projectModal.description')}</h3>
             <p className="text-slate-300 leading-relaxed">
-              {project.longDescription || project.description}
+              {description}
             </p>
 
             {project.tech?.length ? (
               <>
-                <h3 className="text-xl font-semibold mt-6 mb-3">Technologies utilisées</h3>
+                <h3 className="text-xl font-semibold mt-6 mb-3">{t('projectModal.tech')}</h3>
                 <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t) => {
-                    const icon = techIcon(t)
+                  {project.tech.map((tname) => {
+                    const icon = techIcon(tname)
                     return (
-                      <span key={t} className="inline-flex items-center gap-2 text-xs rounded-full border border-slate-700 px-3 py-1.5">
+                      <span key={tname} className="inline-flex items-center gap-2 text-xs rounded-full border border-slate-700 px-3 py-1.5">
                         {icon ? <img src={icon} alt="" className="h-4 w-4" /> : null}
-                        <span>{t}</span>
+                        <span>{tname}</span>
                       </span>
                     )
                   })}
@@ -129,7 +127,7 @@ export default function ProjectModal({ project, open, onClose }: { project: Proj
                     className="inline-flex items-center gap-2 rounded-md border border-slate-700/60 bg-slate-800 px-4 py-2 text-sm hover:border-primary/60 hover:text-primary"
                   >
                     <img src="/icons/github.svg" alt="GitHub" className="h-4 w-4" />
-                    <span>Code</span>
+                    <span>{codeLabel}</span>
                   </a>
                 )}
                 {project.demo && (
@@ -139,7 +137,7 @@ export default function ProjectModal({ project, open, onClose }: { project: Proj
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-md border border-slate-700/60 bg-slate-800 px-4 py-2 text-sm hover:border-primary/60 hover:text-primary"
                   >
-                    <span>Démo</span>
+                    <span>{demoLabel}</span>
                   </a>
                 )}
               </div>

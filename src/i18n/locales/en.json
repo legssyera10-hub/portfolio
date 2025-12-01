@@ -8,8 +8,127 @@
     "education": "Education",
     "contact": "Contact"
   },
+  "language": {
+    "toggleLabel": "Change language"
+  },
   "hero": {
+    "greeting": "Hi, I am",
     "title": "Full Stack Developer passionate about innovation",
-    "cta": "See my projects"
+    "cta": "See my projects",
+    "download": "Download CV"
+  },
+  "about": {
+    "title": "About me",
+    "subtitle": "Passionate about technology and innovation",
+    "paragraphs": [
+      "I am {{name}}, {{role}}. I am motivated and excited by technology challenges, especially where data meets artificial intelligence.",
+      "I constantly look to apply my skills through concrete, innovative projects, combining data analysis, machine learning, and solid engineering practices.",
+      "My goal is to actively contribute to projects that push technology forward while delivering real value."
+    ],
+    "expertiseTitle": "Expertise areas",
+    "expertise": [
+      "Artificial Intelligence & Machine Learning",
+      "Natural Language Processing (NLP)",
+      "Big Data & Data Analytics",
+      "Web development (Python, FastAPI, JavaScript)",
+      "Web performance optimization (WordPress, Magento 2)",
+      "Chatbots & AI recommendation systems"
+    ]
+  },
+  "skills": {
+    "title": "My skills",
+    "subtitle": "Technologies and tools I master",
+    "filters": {
+      "all": "All",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "databases": "Databases",
+      "ai": "AI & Data Science",
+      "devops": "DevOps & Tools",
+      "tools": "Tools"
+    },
+    "categoryLabels": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "databases": "Databases",
+      "ai": "AI & Data Science",
+      "devops": "DevOps & Tools",
+      "tools": "Tools"
+    }
+  },
+  "projects": {
+    "title": "My projects",
+    "subtitle": "Discover my technical achievements",
+    "filters": {
+      "all": "All projects",
+      "ai": "AI",
+      "web": "Web development",
+      "data": "Data science"
+    },
+    "buttons": {
+      "code": "Code",
+      "demo": "Demo"
+    },
+    "categoryLabels": {
+      "ai": "AI",
+      "web": "Web development",
+      "data": "Data science"
+    }
+  },
+  "experience": {
+    "title": "Professional experience",
+    "subtitle": "My career path",
+    "responsibilities": "Responsibilities",
+    "technologies": "Technologies",
+    "achievements": "Achievements"
+  },
+  "education": {
+    "title": "Education",
+    "subtitle": "Academic journey and key learnings"
+  },
+  "contact": {
+    "title": "Contact me",
+    "subtitle": "Let's discuss your next project",
+    "info": {
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location",
+      "availability": "Availability",
+      "social": "LinkedIn & Social"
+    },
+    "toast": {
+      "missingConfig": "Email not configured. Add your EmailJS keys in .env.local",
+      "success": "Message sent successfully!",
+      "error": "Send failed. Please try again later."
+    },
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "namePlaceholder": "Your full name",
+      "emailPlaceholder": "your@email.com",
+      "subjectPlaceholder": "Message subject",
+      "messagePlaceholder": "Your message...",
+      "required": "{{field}} required",
+      "send": "Send message",
+      "sending": "Sending..."
+    }
+  },
+  "cta": {
+    "primary": "Interested in my work? Let's talk about your next project!",
+    "buttonContact": "Contact me",
+    "download": "Download CV",
+    "ready": "Ready to join your team for a final-year internship!"
+  },
+  "footer": {
+    "rights": "Copyright {{year}} Legssyer Mohammed Anas. All rights reserved."
+  },
+  "projectModal": {
+    "description": "Description",
+    "tech": "Technologies used",
+    "close": "Close",
+    "prev": "Previous",
+    "next": "Next"
   }
 }

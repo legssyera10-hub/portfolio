@@ -5,6 +5,8 @@ import { Github, Linkedin } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 import Typewriter from '../components/animations/Typewriter'
 import FuturisticBackground from '../components/backgrounds/FuturisticBackground'
+import { useTranslation } from 'react-i18next'
+import { pickLocalized, resolveLang } from '../utils/locale'
 
 type FormData = { name: string; email: string; subject: string; message: string }
 
@@ -21,6 +23,8 @@ function InfoCard({ icon, title, value }: { icon: React.ReactNode; title: string
 }
 
 export default function ContactSection() {
+  const { t, i18n } = useTranslation()
+  const lang = resolveLang(i18n.language)
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormData>()
 
   const onSubmit = async (data: FormData) => {
@@ -29,7 +33,7 @@ export default function ContactSection() {
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined
 
     if (!serviceId || !templateId || !publicKey) {
-      toast.error('Email non configuré. Ajoutez vos clés EmailJS dans .env.local')
+      toast.error(t('contact.toast.missingConfig'))
       return
     }
 
@@ -46,39 +50,42 @@ export default function ContactSection() {
         },
         { publicKey }
       )
-      toast.success('Message envoyé avec succès !')
+      toast.success(t('contact.toast.success'))
       reset()
     } catch (err) {
       console.error('EmailJS error:', err)
-      toast.error("Échec de l'envoi. Réessayez plus tard.")
+      toast.error(t('contact.toast.error'))
     }
   }
+
+  const availability = pickLocalized(profile.availability, lang)
+  const location = pickLocalized(profile.location, lang)
 
   return (
     <section id="contact" className="relative overflow-hidden mx-auto max-w-[var(--container)] px-4 py-20">
       <FuturisticBackground />
       <Toaster />
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-5xl font-extrabold">Contactez-moi</h2>
+        <h2 className="text-3xl md:text-5xl font-extrabold">{t('contact.title')}</h2>
         <div className="mt-3 text-slate-400">
-          <Typewriter as="p" text="Discutons de votre prochain projet" speed={28} />
+          <Typewriter as="p" text={t('contact.subtitle')} speed={28} />
         </div>
       </div>
 
       <div className="grid gap-8 md:grid-cols-2">
         {/* Left: contact info */}
         <div className="space-y-4">
-          <div className="card p-4"><InfoCard icon={<img src="/icons/mail-modern.svg" alt="" className="h-5 w-5" />} title="Email" value={profile.email} /></div>
-          <div className="card p-4"><InfoCard icon={<img src="/icons/phone-modern.svg" alt="" className="h-5 w-5" />} title="Téléphone" value={profile.phone} /></div>
-          <div className="card p-4"><InfoCard icon={<img src="/icons/location-modern.svg" alt="" className="h-5 w-5" />} title="Localisation" value={profile.location} /></div>
+          <div className="card p-4"><InfoCard icon={<img src="/icons/mail-modern.svg" alt="" className="h-5 w-5" />} title={t('contact.info.email')} value={profile.email} /></div>
+          <div className="card p-4"><InfoCard icon={<img src="/icons/phone-modern.svg" alt="" className="h-5 w-5" />} title={t('contact.info.phone')} value={profile.phone} /></div>
+          <div className="card p-4"><InfoCard icon={<img src="/icons/location-modern.svg" alt="" className="h-5 w-5" />} title={t('contact.info.location')} value={location} /></div>
 
           <div className="rounded-xl p-5 bg-gradient-to-r from-primary to-accent text-white shadow-lg">
-            <p className="font-semibold">Disponibilité</p>
-            <p className="opacity-90">{profile.availability}</p>
+            <p className="font-semibold">{t('contact.info.availability')}</p>
+            <p className="opacity-90">{availability}</p>
           </div>
 
           <div className="pt-2">
-            <p className="font-semibold mb-3">LinkedIn & Réseaux</p>
+            <p className="font-semibold mb-3">{t('contact.info.social')}</p>
             <div className="flex items-center gap-3">
               <a className="h-10 w-10 rounded-lg border border-slate-700/60 bg-slate-900/40 flex items-center justify-center hover:text-primary" href={profile.social.github} target="_blank" rel="noreferrer" aria-label="GitHub">
                 <Github size={18}/>
@@ -97,28 +104,28 @@ export default function ContactSection() {
         <div className="card p-6">
           <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
             <div>
-              <label className="block text-sm mb-1">Nom *</label>
-              <input {...register('name', { required: true })} className="w-full rounded-md border border-slate-700 bg-transparent px-3 py-2" placeholder="Votre nom complet" />
-              {errors.name && <p className="text-sm text-red-500 mt-1">Nom requis</p>}
+              <label className="block text-sm mb-1">{t('contact.form.name')} *</label>
+              <input {...register('name', { required: true })} className="w-full rounded-md border border-slate-700 bg-transparent px-3 py-2" placeholder={t('contact.form.namePlaceholder')} />
+              {errors.name && <p className="text-sm text-red-500 mt-1">{t('contact.form.required', { field: t('contact.form.name') })}</p>}
             </div>
             <div>
-              <label className="block text-sm mb-1">Email *</label>
-              <input type="email" {...register('email', { required: true })} className="w-full rounded-md border border-slate-700 bg-transparent px-3 py-2" placeholder="votre@email.com" />
-              {errors.email && <p className="text-sm text-red-500 mt-1">Email requis</p>}
+              <label className="block text-sm mb-1">{t('contact.form.email')} *</label>
+              <input type="email" {...register('email', { required: true })} className="w-full rounded-md border border-slate-700 bg-transparent px-3 py-2" placeholder={t('contact.form.emailPlaceholder')} />
+              {errors.email && <p className="text-sm text-red-500 mt-1">{t('contact.form.required', { field: t('contact.form.email') })}</p>}
             </div>
             <div>
-              <label className="block text-sm mb-1">Sujet *</label>
-              <input {...register('subject', { required: true })} className="w-full rounded-md border border-slate-700 bg-transparent px-3 py-2" placeholder="Sujet de votre message" />
-              {errors.subject && <p className="text-sm text-red-500 mt-1">Sujet requis</p>}
+              <label className="block text-sm mb-1">{t('contact.form.subject')} *</label>
+              <input {...register('subject', { required: true })} className="w-full rounded-md border border-slate-700 bg-transparent px-3 py-2" placeholder={t('contact.form.subjectPlaceholder')} />
+              {errors.subject && <p className="text-sm text-red-500 mt-1">{t('contact.form.required', { field: t('contact.form.subject') })}</p>}
             </div>
             <div>
-              <label className="block text-sm mb-1">Message *</label>
-              <textarea rows={6} {...register('message', { required: true })} className="w-full rounded-md border border-slate-700 bg-transparent px-3 py-2" placeholder="Votre message..." />
-              {errors.message && <p className="text-sm text-red-500 mt-1">Message requis</p>}
+              <label className="block text-sm mb-1">{t('contact.form.message')} *</label>
+              <textarea rows={6} {...register('message', { required: true })} className="w-full rounded-md border border-slate-700 bg-transparent px-3 py-2" placeholder={t('contact.form.messagePlaceholder')} />
+              {errors.message && <p className="text-sm text-red-500 mt-1">{t('contact.form.required', { field: t('contact.form.message') })}</p>}
             </div>
             <div>
               <button disabled={isSubmitting} className="w-full inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-3 text-white hover:opacity-90 disabled:opacity-50">
-                {isSubmitting ? 'Envoi...' : 'Envoyer le message'}
+                {isSubmitting ? t('contact.form.sending') : t('contact.form.send')}
               </button>
             </div>
           </form>

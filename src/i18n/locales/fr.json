@@ -1,15 +1,134 @@
 {
   "nav": {
     "home": "Accueil",
-    "about": "À propos",
+    "about": "A propos",
     "projects": "Projets",
-    "skills": "Compétences",
-    "experience": "Expérience",
-    "education": "Éducation",
+    "skills": "Competences",
+    "experience": "Experience",
+    "education": "Education",
     "contact": "Contact"
   },
+  "language": {
+    "toggleLabel": "Changer la langue"
+  },
   "hero": {
-    "title": "Développeur Full Stack passionné par l'innovation",
-    "cta": "Voir mes projets"
+    "greeting": "Salut, je suis",
+    "title": "Developpeur Full Stack passionne par l'innovation",
+    "cta": "Voir mes projets",
+    "download": "Telecharger CV"
+  },
+  "about": {
+    "title": "A propos de moi",
+    "subtitle": "Passionne par la technologie et l'innovation",
+    "paragraphs": [
+      "Je suis {{name}}, {{role}}. Je suis motive et passionne par les defis technologiques, en particulier ceux a l'intersection de la donnee et de l'intelligence artificielle.",
+      "Je recherche constamment a mettre en pratique mes competences a travers des projets concrets et innovants, en combinant analyse de donnees, apprentissage automatique et bonnes pratiques d'ingenierie.",
+      "Mon objectif est de contribuer activement a des projets qui repoussent les limites de la technologie tout en apportant une reelle valeur ajoutee."
+    ],
+    "expertiseTitle": "Domaines d'expertise",
+    "expertise": [
+      "Intelligence Artificielle et Machine Learning",
+      "Traitement du Langage Naturel (NLP)",
+      "Big Data et Data Analytics",
+      "Developpement Web (Python, FastAPI, JavaScript)",
+      "Optimisation de performances Web (WordPress, Magento 2)",
+      "Chatbots et systemes de recommandation IA"
+    ]
+  },
+  "skills": {
+    "title": "Mes Competences",
+    "subtitle": "Technologies et outils que je maitrise",
+    "filters": {
+      "all": "Toutes",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "databases": "Bases de donnees",
+      "ai": "IA et Data Science",
+      "devops": "DevOps et Outils",
+      "tools": "Outils"
+    },
+    "categoryLabels": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "databases": "Bases de donnees",
+      "ai": "IA et Data Science",
+      "devops": "DevOps et Outils",
+      "tools": "Outils"
+    }
+  },
+  "projects": {
+    "title": "Mes Projets",
+    "subtitle": "Decouvrez mes realisations techniques",
+    "filters": {
+      "all": "Tous les projets",
+      "ai": "IA",
+      "web": "Developpement Web",
+      "data": "Data Science"
+    },
+    "buttons": {
+      "code": "Code",
+      "demo": "Demo"
+    },
+    "categoryLabels": {
+      "ai": "IA",
+      "web": "Developpement Web",
+      "data": "Data Science"
+    }
+  },
+  "experience": {
+    "title": "Experience Professionnelle",
+    "subtitle": "Mon parcours professionnel",
+    "responsibilities": "Responsabilites",
+    "technologies": "Technologies",
+    "achievements": "Realisations"
+  },
+  "education": {
+    "title": "Education",
+    "subtitle": "Parcours academique et apprentissages cles"
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "subtitle": "Discutons de votre prochain projet",
+    "info": {
+      "email": "Email",
+      "phone": "Telephone",
+      "location": "Localisation",
+      "availability": "Disponibilite",
+      "social": "LinkedIn et reseaux"
+    },
+    "toast": {
+      "missingConfig": "Email non configure. Ajoutez vos cles EmailJS dans .env.local",
+      "success": "Message envoye avec succes !",
+      "error": "Echec de l'envoi. Reessayez plus tard."
+    },
+    "form": {
+      "name": "Nom",
+      "email": "Email",
+      "subject": "Sujet",
+      "message": "Message",
+      "namePlaceholder": "Votre nom complet",
+      "emailPlaceholder": "votre@email.com",
+      "subjectPlaceholder": "Sujet de votre message",
+      "messagePlaceholder": "Votre message...",
+      "required": "{{field}} requis",
+      "send": "Envoyer le message",
+      "sending": "Envoi..."
+    }
+  },
+  "cta": {
+    "primary": "Interesse par mon travail ? Discutons de votre prochain projet !",
+    "buttonContact": "Me contacter",
+    "download": "Telecharger CV",
+    "ready": "Pret a rejoindre votre equipe pour un stage de fin d'etudes !"
+  },
+  "footer": {
+    "rights": "Copyright {{year}} Legssyer Mohammed Anas. Tous droits reserves."
+  },
+  "projectModal": {
+    "description": "Description",
+    "tech": "Technologies utilisees",
+    "close": "Fermer",
+    "prev": "Precedent",
+    "next": "Suivant"
   }
 }

@@ -1,14 +1,18 @@
 import { Calendar, MapPin } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { experiences } from '../data/experience'
 import WordReveal from '../components/animations/WordReveal'
 import Reveal from '../components/animations/Reveal'
 import Typewriter from '../components/animations/Typewriter'
+import { Lang, pickLocalized, resolveLang } from '../utils/locale'
 
 function Badge({ children }: { children: React.ReactNode }) {
   return <span className="text-xs rounded-md bg-slate-800/60 border border-slate-700/60 px-2 py-1 text-slate-200">{children}</span>
 }
 
 export default function ExperienceSection() {
+  const { t, i18n } = useTranslation()
+  const lang = resolveLang(i18n.language)
   return (
     <section id="experience" className="relative overflow-hidden mx-auto max-w-[var(--container)] px-4 py-20">
       {/* Themed background */}
@@ -18,9 +22,9 @@ export default function ExperienceSection() {
         <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 h-96 w-[120%] rounded-full blur-3xl bg-gradient-to-r from-accent/20 via-transparent to-primary/20" />
       </div>
       <div className="text-center mb-12">
-        <WordReveal text="Expérience Professionnelle" className="text-3xl md:text-5xl font-extrabold" />
+        <WordReveal text={t('experience.title')} className="text-3xl md:text-5xl font-extrabold" />
         <div className="mt-3 text-slate-400">
-          <Typewriter as="p" text="Mon parcours professionnel" speed={28} />
+          <Typewriter as="p" text={t('experience.subtitle')} speed={28} />
         </div>
       </div>
 
@@ -38,7 +42,7 @@ export default function ExperienceSection() {
 
                 {isLeft ? (
                   <div className="hidden md:block">
-                    <Reveal><ExperienceCard exp={exp} align="left" /></Reveal>
+                    <Reveal><ExperienceCard exp={exp} align="left" lang={lang} /></Reveal>
                   </div>
                 ) : (
                   <div className="hidden md:block" />
@@ -46,14 +50,14 @@ export default function ExperienceSection() {
 
                 {!isLeft ? (
                   <div className="hidden md:block">
-                    <Reveal><ExperienceCard exp={exp} align="right" /></Reveal>
+                    <Reveal><ExperienceCard exp={exp} align="right" lang={lang} /></Reveal>
                   </div>
                 ) : (
                   <div className="hidden md:block" />
                 )}
 
                 <div className="md:hidden col-span-2">
-                  <ExperienceCard exp={exp} align="left" />
+                  <ExperienceCard exp={exp} align="left" lang={lang} />
                 </div>
               </li>
             )
@@ -64,7 +68,12 @@ export default function ExperienceSection() {
   )
 }
 
-function ExperienceCard({ exp, align }: { exp: (typeof experiences)[number]; align: 'left' | 'right' }) {
+function ExperienceCard({ exp, align, lang }: { exp: (typeof experiences)[number]; align: 'left' | 'right'; lang: Lang }) {
+  const role = pickLocalized(exp.role, lang)
+  const summary = exp.summary ? pickLocalized(exp.summary, lang) : null
+  const location = exp.location ? pickLocalized(exp.location, lang) : null
+  const { t } = useTranslation()
+
   return (
     <div className={`card p-6 ${align === 'left' ? 'md:mr-10' : 'md:ml-10'}`}>
       <div className="flex items-start justify-between gap-4">
@@ -75,42 +84,42 @@ function ExperienceCard({ exp, align }: { exp: (typeof experiences)[number]; ali
             <div className="h-10 w-10 rounded-md bg-gradient-to-br from-primary/20 to-accent/20" />
           )}
           <div>
-            <h3 className="text-xl font-semibold">{exp.role}</h3>
+            <h3 className="text-xl font-semibold">{role}</h3>
             <p className="text-primary">{exp.company}</p>
           </div>
         </div>
         <div className="text-sm text-slate-400 flex flex-col items-end">
           <div className="flex items-center gap-2"><Calendar size={14}/> {exp.period}</div>
-          {exp.location && <div className="flex items-center gap-2"><MapPin size={14}/> {exp.location}</div>}
+          {location && <div className="flex items-center gap-2"><MapPin size={14}/> {location}</div>}
         </div>
       </div>
 
-      {exp.summary && <p className="mt-4 text-slate-700 dark:text-slate-300">{exp.summary}</p>}
+      {summary && <p className="mt-4 text-slate-700 dark:text-slate-300">{summary}</p>}
 
       {exp.responsibilities && (
         <div className="mt-5">
-          <h4 className="font-semibold">Responsabilités</h4>
+          <h4 className="font-semibold">{t('experience.responsibilities')}</h4>
           <ul className="mt-2 list-disc ps-5 text-slate-700 dark:text-slate-300 space-y-1">
-            {exp.responsibilities.map((r, i) => <li key={i}>{r}</li>)}
+            {exp.responsibilities.map((r, i) => <li key={i}>{pickLocalized(r, lang)}</li>)}
           </ul>
         </div>
       )}
 
       {exp.tech && (
         <div className="mt-5">
-          <h4 className="font-semibold">Technologies</h4>
-          <div className="mt-2 flex flex-wrap gap-2">{exp.tech.map((t) => <Badge key={t}>{t}</Badge>)}</div>
+          <h4 className="font-semibold">{t('experience.technologies')}</h4>
+          <div className="mt-2 flex flex-wrap gap-2">{exp.tech.map((tname) => <Badge key={tname}>{tname}</Badge>)}</div>
         </div>
       )}
 
       {exp.achievements && (
         <div className="mt-5">
-          <h4 className="font-semibold">Réalisations</h4>
+          <h4 className="font-semibold">{t('experience.achievements')}</h4>
           <ul className="mt-2 text-slate-700 dark:text-slate-300 space-y-1">
             {exp.achievements.map((a, i) => (
               <li key={i} className="flex items-start gap-2">
                 <span className="mt-2 h-2 w-2 rounded-full bg-green-500 inline-block" />
-                <span>{a}</span>
+                <span>{pickLocalized(a, lang)}</span>
               </li>
             ))}
           </ul>
@@ -119,4 +128,3 @@ function ExperienceCard({ exp, align }: { exp: (typeof experiences)[number]; ali
     </div>
   )
 }
-
