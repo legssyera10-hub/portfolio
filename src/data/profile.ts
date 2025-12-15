@@ -5,12 +5,12 @@ type LocalizedField = Localized<string> | string
 export const profile = {
   name: 'LEGSSYER Mohammed Anas',
   role: {
-    fr: 'Futur ingenieur en Big Data & IA',
-    en: 'Future Big Data & AI engineer',
+    fr: 'Futur ingenieur en Data Science & IA',
+    en: 'Future Data Science & AI engineer',
   } as LocalizedField,
   bio: {
-    fr: "Futur ingenieur en Big Data & IA, passionne par l'innovation technologique et le developpement de solutions intelligentes.",
-    en: 'Future Big Data & AI engineer, passionate about technological innovation and building intelligent solutions.',
+    fr: "Futur ingenieur en Data Science & IA, passionne par l'innovation technologique et le developpement de solutions intelligentes.",
+    en: 'Future Data Science & AI engineer, passionate about technological innovation and building intelligent solutions.',
   } as LocalizedField,
   // Place an image at /public/profile.jpg to use it
   photo: '/profile.jpg',
