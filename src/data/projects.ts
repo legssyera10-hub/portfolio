@@ -14,20 +14,31 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: { fr: 'Chatbot IA pour la recommandation de medicaments', en: 'AI chatbot for medicine recommendation' },
+    title: { fr: 'OCR Uploader - Azure Vision Read', en: 'OCR Uploader - Azure Vision Read' },
     category: 'ai',
-    tech: ['Python', 'MongoDB'],
+    tech: [
+      'FastAPI',
+      'Python',
+      'Azure Blob Storage',
+      'Azure Vision Read v3.2',
+      'OpenTelemetry',
+      'Azure Application Insights',
+      'HTML/CSS/JS',
+    ],
     description: {
-      fr: "Developpement d'un chatbot intelligent aidant a choisir des medicaments adaptes selon des criteres specifiques. Competences : NLP, conception/gestion de base de donnees, backend Python.",
-      en: 'Developed an intelligent chatbot to suggest appropriate medicines based on specific criteria. Skills: NLP, database design/management, Python backend.',
+      fr: 'Front drag & drop pour uploader une image, stockage Blob avec SAS 60 min et appel OCR Azure Vision Read v3.2. Retour JSON avec texte extrait.',
+      en: 'Drag & drop front to upload an image, Blob storage with 60-min SAS, then OCR via Azure Vision Read v3.2. Returns JSON with extracted text.',
     },
-    image: '/projects/chatbot.png',
+    image: '/projects/ocr-uploader.png',
+    screenshots: ['/projects/ocr-uploader2.png', '/projects/ocr-uploader3.png'],
+
+
     longDescription: {
-      fr: "Chatbot de recommandation de medicaments base sur le NLP: pretraitement, extraction d'entites/symptomes et proposition de medicaments selon regles metier.",
-      en: 'Medicine recommendation chatbot powered by NLP: preprocessing, entity/symptom extraction, and proposing medicines based on business rules.',
+      fr: "Flux complet : upload multipart vers Blob (creation du container si besoin), SAS en lecture, appel Vision Read + polling jusqu a succeeded et aggregation des lignes. Instrumentation OpenTelemetry vers Azure Monitor (FastAPI, requests).",
+      en: 'End-to-end: multipart upload to Blob (creates container if missing), read SAS, Vision Read call + polling until succeeded and line aggregation. OpenTelemetry instrumentation to Azure Monitor (FastAPI, requests).',
     },
-    screenshots: ['/projects/chatbot2.png'],
-    github: 'https://github.com/legssyera10-hub/Chatbot-IA-pour-la-recommandation-de-m-dicaments.git',
+    github: 'https://github.com/legssyera10-hub/projectocr',
+    demo: 'https://projectocrlegssyer.vercel.app/',
   },
   {
     title: { fr: 'Plateforme de gestion des informations patients et suivi medical', en: 'Patient information management and medical follow-up platform' },
@@ -44,6 +55,22 @@ export const projects: Project[] = [
     },
     screenshots: ['/projects/medicalapp2.png'],
     github: 'https://github.com/legssyera10-hub/Gestion-des-patients-et-suivi-m-dical.git',
+  },
+  {
+    title: { fr: 'Chatbot IA pour la recommandation de medicaments', en: 'AI chatbot for medicine recommendation' },
+    category: 'ai',
+    tech: ['Python', 'MongoDB'],
+    description: {
+      fr: "Developpement d'un chatbot intelligent aidant a choisir des medicaments adaptes selon des criteres specifiques. Competences : NLP, conception/gestion de base de donnees, backend Python.",
+      en: 'Developed an intelligent chatbot to suggest appropriate medicines based on specific criteria. Skills: NLP, database design/management, Python backend.',
+    },
+    image: '/projects/chatbot.png',
+    longDescription: {
+      fr: "Chatbot de recommandation de medicaments base sur le NLP: pretraitement, extraction d'entites/symptomes et proposition de medicaments selon regles metier.",
+      en: 'Medicine recommendation chatbot powered by NLP: preprocessing, entity/symptom extraction, and proposing medicines based on business rules.',
+    },
+    screenshots: ['/projects/chatbot2.png'],
+    github: 'https://github.com/legssyera10-hub/Chatbot-IA-pour-la-recommandation-de-m-dicaments.git',
   },
   {
     title: { fr: 'Analyse de la satisfaction des etudiants - Machine Learning & Web App', en: 'Student satisfaction analysis - Machine Learning & Web App' },

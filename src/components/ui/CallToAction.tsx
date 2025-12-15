@@ -1,9 +1,12 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { cvUrl, openAndDownloadCv } from '../../utils/cv'
+import { getCvUrl, openAndDownloadCv } from '../../utils/cv'
+import { resolveLang } from '../../utils/locale'
 
 export default function CallToAction() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const lang = resolveLang(i18n.language)
+  const link = getCvUrl(lang)
   return (
     <section className="mx-auto max-w-[var(--container)] px-4 py-16 text-center">
       <p className="text-lg text-slate-300 mb-6">{t('cta.ready')}</p>
@@ -12,10 +15,10 @@ export default function CallToAction() {
           {t('cta.buttonContact')}
         </Link>
         <a
-          href={cvUrl}
+          href={link}
           onClick={(e) => {
             e.preventDefault()
-            openAndDownloadCv()
+            openAndDownloadCv(lang)
           }}
           className="inline-flex items-center gap-2 rounded-md border border-primary text-primary px-5 py-3 hover:bg-primary/5"
         >

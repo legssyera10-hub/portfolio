@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom'
 import { profile, initialsFromName } from '../data/profile'
 import WordReveal from '../components/animations/WordReveal'
 import Typewriter from '../components/animations/Typewriter'
-import { cvUrl, openAndDownloadCv } from '../utils/cv'
+import { getCvUrl, openAndDownloadCv } from '../utils/cv'
 import { pickLocalized, resolveLang } from '../utils/locale'
 
 export default function Hero() {
   const { t, i18n } = useTranslation()
   const lang = resolveLang(i18n.language)
+  const cvLink = getCvUrl(lang)
   const initials = initialsFromName(profile.name)
 
   return (
@@ -78,10 +79,10 @@ export default function Hero() {
             {t('hero.cta')}
           </Link>
           <a
-            href={cvUrl}
+            href={cvLink}
             onClick={(e) => {
               e.preventDefault()
-              openAndDownloadCv()
+              openAndDownloadCv(lang)
             }}
             className="inline-flex items-center gap-2 rounded-md border border-slate-300 dark:border-slate-700 px-5 py-3 hover:border-primary/60 hover:text-primary"
           >
