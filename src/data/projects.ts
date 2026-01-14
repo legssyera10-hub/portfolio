@@ -57,6 +57,24 @@ export const projects: Project[] = [
     github: 'https://github.com/legssyera10-hub/Gestion-des-patients-et-suivi-m-dical.git',
   },
   {
+    title: {
+      fr: 'Representation conjointe texte-graphes pour la recommandation',
+      en: 'Joint text-graph representations for recommendation',
+    },
+    category: 'data',
+    tech: ['Python', 'Word2Vec', 'Graph Neural Networks (GCN)', 'PyTorch', 'scikit-learn'],
+    description: {
+      fr: "Systeme de recommandation hybride MovieLens combinant embeddings texte et structure de graphe pour ameliorer la qualite des recommandations.",
+      en: 'Hybrid MovieLens recommender that combines text embeddings and graph structure to improve recommendation quality.',
+    },
+    image: '/projects/Representation conjointe texte-graphes pour la recommandation.webp',
+    longDescription: {
+      fr: "Pipeline complet : texte des films (titre + genres) encode via Word2Vec (dim 16, fenetre 3, 1 epoch), graphe item-item construit par similarite de genres (top-k voisins) puis GCN 2 couches pour embeddings 16d. Les representations texte + graphe sont concatenees puis projetees via MLP, entrainees en prediction d aretes (80/10/10). Evaluation Precision@10, Recall@10, F1@10 : le graphe seul est meilleur et la fusion depasse le texte seul.",
+      en: 'End-to-end pipeline: movie text (title + genres) encoded with Word2Vec (dim 16, window 3, 1 epoch), item-item graph built by genre similarity (top-k neighbors) then 2-layer GCN for 16d embeddings. Text + graph representations are concatenated and projected via MLP, trained with edge prediction (80/10/10). Precision@10/Recall@10/F1@10 show graph-only is best and fusion beats text-only.',
+    },
+    github: 'https://github.com/legssyera10-hub/livrablesR-D',
+  },
+  {
     title: { fr: 'Chatbot IA pour la recommandation de medicaments', en: 'AI chatbot for medicine recommendation' },
     category: 'ai',
     tech: ['Python', 'MongoDB'],

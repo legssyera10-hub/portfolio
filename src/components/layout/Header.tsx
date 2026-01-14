@@ -20,9 +20,20 @@ export default function Header() {
     <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-slate-950/60 border-b border-slate-200 dark:border-slate-800">
       <div className="mx-auto max-w-[var(--container)] px-4 py-3 flex items-center gap-4">
         <Link to="/" className="flex items-center gap-2">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-primary to-accent text-white font-bold">
-            {initialsFromName(profile.name)}
-          </span>
+          {profile.photo ? (
+            <img
+              src={profile.photo}
+              alt={profile.name}
+              className="h-8 w-8 rounded-full object-cover border border-white/10"
+              onError={(e) => {
+                ;(e.currentTarget as HTMLImageElement).style.display = 'none'
+              }}
+            />
+          ) : (
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-primary to-accent text-white font-bold">
+              {initialsFromName(profile.name)}
+            </span>
+          )}
           <span className="font-semibold tracking-tight hidden sm:inline">{profile.name}</span>
         </Link>
         <nav className="flex-1 hidden sm:flex items-center gap-6">
@@ -45,4 +56,3 @@ export default function Header() {
     </header>
   )
 }
-

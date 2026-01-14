@@ -24,16 +24,16 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
 
 function SkillCard({ s, label }: { s: Skill; label: string }) {
   return (
-    <div className="card p-6 hover:border-primary/60 transition-colors">
-      <div className="h-16 flex items-center justify-center">
+    <div className="card p-3 hover:border-primary/60 transition-colors">
+      <div className="h-10 flex items-center justify-center">
         {s.icon ? (
-          <img src={s.icon} alt={s.name} className="h-12 w-12 object-contain opacity-90" />
+          <img src={s.icon} alt={s.name} className="h-8 w-8 object-contain opacity-90" />
         ) : (
-          <div className="h-12 w-12 rounded-md bg-gradient-to-br from-primary/20 to-accent/20" />
+          <div className="h-8 w-8 rounded-md bg-gradient-to-br from-primary/20 to-accent/20" />
         )}
       </div>
-      <h4 className="mt-4 text-xl font-semibold text-slate-100 text-center">{s.name}</h4>
-      <p className="mt-1 text-sm text-slate-400 text-center">{label}</p>
+      <h4 className="mt-2 text-base font-semibold text-slate-100 text-center">{s.name}</h4>
+      <p className="mt-1 text-[11px] text-slate-400 text-center">{label}</p>
     </div>
   )
 }
@@ -67,7 +67,7 @@ export default function SkillsSection() {
       </div>
 
       <Reveal>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((s) => (
             <SkillCard key={`${s.name}-${s.category}`} s={s} label={t(`skills.categoryLabels.${s.category}`)} />
           ))}
