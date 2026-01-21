@@ -1,11 +1,11 @@
 {
   "nav": {
     "home": "Accueil",
-    "about": "A propos",
+    "about": "À propos",
     "projects": "Projets",
-    "skills": "Competences",
-    "experience": "Experience",
-    "education": "Education",
+    "skills": "Compétences",
+    "experience": "Expérience",
+    "education": "Éducation",
     "contact": "Contact"
   },
   "language": {
@@ -13,36 +13,36 @@
   },
   "hero": {
     "greeting": "Salut, je suis",
-    "title": "Developpeur Full Stack passionne par l'innovation",
+    "title": "Développeur Full Stack passionné par l'innovation",
     "cta": "Voir mes projets",
-    "download": "Telecharger CV"
+    "download": "Télécharger CV"
   },
   "about": {
-    "title": "A propos de moi",
-    "subtitle": "Passionne par la technologie et l'innovation",
+    "title": "À propos de moi",
+    "subtitle": "Passionné par la technologie et l'innovation",
     "paragraphs": [
-      "Je suis {{name}}, {{role}}. Je suis motive et passionne par les defis technologiques, en particulier ceux a l'intersection de la donnee et de l'intelligence artificielle.",
-      "Je recherche constamment a mettre en pratique mes competences a travers des projets concrets et innovants, en combinant analyse de donnees, apprentissage automatique et bonnes pratiques d'ingenierie.",
-      "Mon objectif est de contribuer activement a des projets qui repoussent les limites de la technologie tout en apportant une reelle valeur ajoutee."
+      "Je suis {{name}}, {{role}}. Je suis motivé et passionné par les défis technologiques, en particulier ceux à l'intersection de la donnée et de l'intelligence artificielle.",
+      "Je recherche constamment à mettre en pratique mes compétences à travers des projets concrets et innovants, en combinant analyse de données, apprentissage automatique et bonnes pratiques d'ingénierie.",
+      "Mon objectif est de contribuer activement à des projets qui repoussent les limites de la technologie tout en apportant une réelle valeur ajoutée."
     ],
     "expertiseTitle": "Domaines d'expertise",
     "expertise": [
       "Intelligence Artificielle et Machine Learning",
       "Traitement du Langage Naturel (NLP)",
       "Big Data et Data Analytics",
-      "Developpement Web (Python, FastAPI, JavaScript)",
+      "Développement Web (Python, FastAPI, JavaScript)",
       "Optimisation de performances Web (WordPress, Magento 2)",
-      "Chatbots et systemes de recommandation IA"
+      "Chatbots et systèmes de recommandation IA"
     ]
   },
   "skills": {
-    "title": "Mes Competences",
-    "subtitle": "Technologies et outils que je maitrise",
+    "title": "Mes Compétences",
+    "subtitle": "Technologies et outils que je maîtrise",
     "filters": {
       "all": "Toutes",
       "frontend": "Frontend",
       "backend": "Backend",
-      "databases": "Bases de donnees",
+      "databases": "Bases de données",
       "ai": "IA et Data Science",
       "devops": "DevOps et Outils",
       "tools": "Outils"
@@ -50,7 +50,7 @@
     "categoryLabels": {
       "frontend": "Frontend",
       "backend": "Backend",
-      "databases": "Bases de donnees",
+      "databases": "Bases de données",
       "ai": "IA et Data Science",
       "devops": "DevOps et Outils",
       "tools": "Outils"
@@ -58,48 +58,48 @@
   },
   "projects": {
     "title": "Mes Projets",
-    "subtitle": "Decouvrez mes realisations techniques",
+    "subtitle": "Découvrez mes réalisations techniques",
     "filters": {
       "all": "Tous les projets",
       "ai": "IA",
-      "web": "Developpement Web",
+      "web": "Développement Web",
       "data": "Data Science"
     },
     "buttons": {
       "code": "Code",
-      "demo": "Demo"
+      "demo": "Démo"
     },
     "categoryLabels": {
       "ai": "IA",
-      "web": "Developpement Web",
+      "web": "Développement Web",
       "data": "Data Science"
     }
   },
   "experience": {
-    "title": "Experience Professionnelle",
+    "title": "Expérience Professionnelle",
     "subtitle": "Mon parcours professionnel",
-    "responsibilities": "Responsabilites",
+    "responsibilities": "Responsabilités",
     "technologies": "Technologies",
-    "achievements": "Realisations"
+    "achievements": "Réalisations"
   },
   "education": {
-    "title": "Education",
-    "subtitle": "Parcours academique et apprentissages cles"
+    "title": "Éducation",
+    "subtitle": "Parcours académique et apprentissages clés"
   },
   "contact": {
     "title": "Contactez-moi",
     "subtitle": "Discutons de votre prochain projet",
     "info": {
       "email": "Email",
-      "phone": "Telephone",
+      "phone": "Téléphone",
       "location": "Localisation",
-      "availability": "Disponibilite",
-      "social": "LinkedIn et reseaux"
+      "availability": "Disponibilité",
+      "social": "LinkedIn et réseaux"
     },
     "toast": {
-      "missingConfig": "Email non configure. Ajoutez vos cles EmailJS dans .env.local",
-      "success": "Message envoye avec succes !",
-      "error": "Echec de l'envoi. Reessayez plus tard."
+      "missingConfig": "Email non configuré. Ajoutez vos clés EmailJS dans .env.local",
+      "success": "Message envoyé avec succès !",
+      "error": "Échec de l'envoi. Réessayez plus tard."
     },
     "form": {
       "name": "Nom",
@@ -116,19 +116,19 @@
     }
   },
   "cta": {
-    "primary": "Interesse par mon travail ? Discutons de votre prochain projet !",
+    "primary": "Intéressé par mon travail ? Discutons de votre prochain projet !",
     "buttonContact": "Me contacter",
-    "download": "Telecharger CV",
-    "ready": "Pret a rejoindre votre equipe pour un stage de fin d'etudes !"
+    "download": "Télécharger CV",
+    "ready": "Prêt à rejoindre votre équipe pour un stage de fin d'études !"
   },
   "footer": {
-    "rights": "Copyright {{year}} Legssyer Mohammed Anas. Tous droits reserves."
+    "rights": "Copyright {{year}} Legssyer Mohammed Anas. Tous droits réservés."
   },
   "projectModal": {
     "description": "Description",
-    "tech": "Technologies utilisees",
+    "tech": "Technologies utilisées",
     "close": "Fermer",
-    "prev": "Precedent",
+    "prev": "Précédent",
     "next": "Suivant"
   }
 }
